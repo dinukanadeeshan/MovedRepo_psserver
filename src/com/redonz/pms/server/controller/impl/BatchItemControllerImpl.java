@@ -13,6 +13,8 @@ import com.redonz.pms.server.reservation.Reservation;
 import com.redonz.pms.server.dao.BatchItemDAO;
 import com.redonz.pms.server.dao.impl.BatchItemDAOImpl;
 import com.redonz.pms.server.observable.BatchItemObservable;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -35,7 +37,7 @@ public class BatchItemControllerImpl extends UnicastRemoteObject implements Batc
     }
 
     @Override
-    public boolean saveBatchItem(BatchItem batchItem) throws SQLException, ClassNotFoundException, RemoteException {
+    public boolean saveBatchItem(BatchItem batchItem) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         boolean res = batchItemDAO.insert(batchItem);
         if (res) {
             batchItemObservable.batchItemAdded(batchItem);
@@ -44,32 +46,32 @@ public class BatchItemControllerImpl extends UnicastRemoteObject implements Batc
     }
 
     @Override
-    public BatchItem searchBatchItem(String itemCode) throws SQLException, ClassNotFoundException, RemoteException {
+    public BatchItem searchBatchItem(String itemCode) throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         return batchItemDAO.search(itemCode);
     }
 
     @Override
-    public boolean updateBatchItem(BatchItem batchItem) throws SQLException, ClassNotFoundException, RemoteException {
+    public boolean updateBatchItem(BatchItem batchItem) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         return batchItemDAO.update(batchItem);
     }
 
     @Override
-    public boolean deleteBatchItem(String itemCode) throws SQLException, ClassNotFoundException, RemoteException {
+    public boolean deleteBatchItem(String itemCode) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<BatchItem> getGoingToExpItems(String date) throws SQLException, ClassNotFoundException, RemoteException {
+    public ArrayList<BatchItem> getGoingToExpItems(String date) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getLastBatchItemCode() throws SQLException, ClassNotFoundException, RemoteException {
+    public String getLastBatchItemCode() throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         return batchItemDAO.lastId();
     }
 
     @Override
-    public boolean saveBatchItemList(final ArrayList<BatchItem> batchItemList) throws SQLException, ClassNotFoundException, RemoteException {
+    public boolean saveBatchItemList(final ArrayList<BatchItem> batchItemList) throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         boolean res = batchItemDAO.addList(batchItemList);
         if (res) {
             new Thread() {
@@ -87,47 +89,47 @@ public class BatchItemControllerImpl extends UnicastRemoteObject implements Batc
     }
 
     @Override
-    public ArrayList<BatchItem> getAllBatchItemList() throws SQLException, ClassNotFoundException, RemoteException {
+    public ArrayList<BatchItem> getAllBatchItemList() throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         return batchItemDAO.getAll();
     }
 
     @Override
-    public ArrayList<BatchItem> getBatchesByBarcode(String barcode) throws SQLException, ClassNotFoundException, RemoteException {
+    public ArrayList<BatchItem> getBatchesByBarcode(String barcode) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         return batchItemDAO.batchesForBarcode(barcode);
     }
 
     @Override
-    public String getBarcodeForItemCode(String itemCode) throws SQLException, ClassNotFoundException, RemoteException {
+    public String getBarcodeForItemCode(String itemCode) throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         return batchItemDAO.barcodeForItemCode(itemCode);
     }
 
     @Override
-    public ArrayList<BatchItem> getAvailableBatchesByBarcode(String barcode) throws SQLException, ClassNotFoundException, RemoteException {
+    public ArrayList<BatchItem> getAvailableBatchesByBarcode(String barcode) throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         return batchItemDAO.availableBatchesForBarcode(barcode);
     }
 
     @Override
-    public ItemDetail getItemDetailForBatchN0(String batchNo) throws SQLException, ClassNotFoundException, RemoteException {
+    public ItemDetail getItemDetailForBatchN0(String batchNo) throws SQLException, ClassNotFoundException, RemoteException, FileNotFoundException, IOException {
         return batchItemDAO.batchesForBatchNo(batchNo);
     }
 
     @Override
-    public ArrayList<ItemDetail> getItemDetailForExpDateRange(String beginDate, String endDate) throws SQLException, ClassNotFoundException, RemoteException {
+    public ArrayList<ItemDetail> getItemDetailForExpDateRange(String beginDate, String endDate) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         return batchItemDAO.batchesByExpDate(beginDate, endDate);
     }
 
     @Override
-    public ItemDetail getAvailableItemDetailForBatchN0(String batchNo) throws SQLException, ClassNotFoundException, RemoteException {
+    public ItemDetail getAvailableItemDetailForBatchN0(String batchNo) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         return batchItemDAO.availableBatchesForBatchNo(batchNo);
     }
 
     @Override
-    public ArrayList<ItemDetail> getAvailableItemDetailForExpDateRange(String beginDate, String endDate) throws SQLException, ClassNotFoundException, RemoteException {
+    public ArrayList<ItemDetail> getAvailableItemDetailForExpDateRange(String beginDate, String endDate) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         return batchItemDAO.availableBatchesByExpDate(beginDate, endDate);
     }
 
     @Override
-    public Item getItemByItemCode(String itemCode) throws SQLException, ClassNotFoundException, RemoteException {
+    public Item getItemByItemCode(String itemCode) throws SQLException, ClassNotFoundException, RemoteException , FileNotFoundException, IOException{
         return batchItemDAO.itemForItemCode(itemCode);
     }
 

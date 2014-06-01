@@ -10,6 +10,8 @@ import com.redonz.pms.common.model.Item;
 import com.redonz.pms.common.model.ItemDetail;
 import com.redonz.pms.server.dao.ItemDAO;
 import com.redonz.pms.server.db.DBConnection;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +28,7 @@ public class ItemDAOImpl implements ItemDAO {
     private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     @Override
-    public boolean insert(Item t) throws SQLException, ClassNotFoundException {
+    public boolean insert(Item t) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         readWriteLock.writeLock().lock();
         boolean res = false;
         Connection connection = DBConnection.getConnection();
@@ -50,7 +52,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public Item search(String e) throws SQLException, ClassNotFoundException {
+    public Item search(String e) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         Item item = null;
         readWriteLock.readLock().lock();
         Connection connection = DBConnection.getConnection();
@@ -75,22 +77,22 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean update(Item t) throws SQLException, ClassNotFoundException {
+    public boolean update(Item t) throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(String e) throws SQLException, ClassNotFoundException {
+    public boolean delete(String e) throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ItemDetail getAbstractItemDetail(String barcode) throws ClassNotFoundException, SQLException {
+    public ItemDetail getAbstractItemDetail(String barcode) throws ClassNotFoundException, SQLException , FileNotFoundException, IOException{
         ItemDetail itemDetail = null;
         readWriteLock.readLock().lock();
         Connection connection = DBConnection.getConnection();
@@ -119,12 +121,12 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean addList(ArrayList<Item> tList) throws SQLException, ClassNotFoundException {
+    public boolean addList(ArrayList<Item> tList) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Item> itemsByDescription(String description) throws ClassNotFoundException, SQLException {
+    public ArrayList<Item> itemsByDescription(String description) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         ArrayList<Item> items = new ArrayList<>();
         readWriteLock.readLock().lock();
         Connection connection = DBConnection.getConnection();
@@ -148,7 +150,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public ArrayList<Item> searchLike(String e) throws ClassNotFoundException, SQLException {
+    public ArrayList<Item> searchLike(String e) throws ClassNotFoundException, SQLException , FileNotFoundException, IOException{
         ArrayList<Item> items = new ArrayList<>();
         readWriteLock.readLock().lock();
         Connection connection = DBConnection.getConnection();
@@ -170,7 +172,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public ArrayList<Item> itemsByCategory(String categoryId) throws ClassNotFoundException, SQLException {
+    public ArrayList<Item> itemsByCategory(String categoryId) throws ClassNotFoundException, SQLException , FileNotFoundException, IOException{
         ArrayList<Item> items = new ArrayList<>();
         readWriteLock.readLock()
                 .lock();

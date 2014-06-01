@@ -7,6 +7,8 @@ package com.redonz.pms.server.dao.impl;
 import com.redonz.pms.common.model.Category;
 import com.redonz.pms.server.dao.CategoryDAO;
 import com.redonz.pms.server.db.DBConnection;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +24,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class CategoryDAOImpl implements CategoryDAO{
     private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     @Override
-    public boolean insert(Category t) throws SQLException, ClassNotFoundException {
+    public boolean insert(Category t) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         int res = -1;
         readWriteLock.writeLock().lock();
         try {
@@ -40,7 +42,7 @@ public class CategoryDAOImpl implements CategoryDAO{
     }
 
     @Override
-    public Category search(String e) throws SQLException, ClassNotFoundException {
+    public Category search(String e) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         Category category = null;
         readWriteLock.readLock().lock();
         try {
@@ -60,17 +62,17 @@ public class CategoryDAOImpl implements CategoryDAO{
     }
 
     @Override
-    public boolean update(Category t) throws SQLException, ClassNotFoundException {
+    public boolean update(Category t) throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(String e) throws SQLException, ClassNotFoundException {
+    public boolean delete(String e) throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Category> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Category> getAll() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ArrayList<Category> categorys = new ArrayList<>();
         readWriteLock.readLock().lock();
         try {
@@ -90,7 +92,7 @@ public class CategoryDAOImpl implements CategoryDAO{
     }
 
     @Override
-    public String lastId() throws SQLException, ClassNotFoundException {
+    public String lastId() throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         String lastId = null;
         readWriteLock.readLock().lock();
         try {
@@ -108,7 +110,7 @@ public class CategoryDAOImpl implements CategoryDAO{
     }
 
     @Override
-    public boolean addList(ArrayList<Category> tList) throws SQLException, ClassNotFoundException {
+    public boolean addList(ArrayList<Category> tList) throws SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

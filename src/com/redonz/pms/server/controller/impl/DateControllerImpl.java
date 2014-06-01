@@ -6,6 +6,7 @@ package com.redonz.pms.server.controller.impl;
 
 import com.redonz.pms.common.controller.DateController;
 import com.redonz.pms.server.db.DBConnection;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,7 +25,7 @@ public class DateControllerImpl extends UnicastRemoteObject implements DateContr
         
     }
     @Override
-    public String getCurrentDate() throws RemoteException, SQLException, ClassNotFoundException {
+    public String getCurrentDate() throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         Connection connection = DBConnection.getConnection();
         ResultSet rst = connection.createStatement().executeQuery("select curdate()");
         rst.next();
@@ -33,7 +34,7 @@ public class DateControllerImpl extends UnicastRemoteObject implements DateContr
     }
 
     @Override
-    public String getCurrentTime() throws RemoteException, SQLException, ClassNotFoundException {
+    public String getCurrentTime() throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         Connection connection = DBConnection.getConnection();
         ResultSet rst = connection.createStatement().executeQuery("select curtime()");
         rst.next();

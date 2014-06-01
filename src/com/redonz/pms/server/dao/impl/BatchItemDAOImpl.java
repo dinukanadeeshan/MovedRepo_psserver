@@ -12,6 +12,8 @@ import com.redonz.pms.server.controller.impl.BatchItemControllerImpl;
 import com.redonz.pms.server.dao.BatchItemDAO;
 import com.redonz.pms.server.dao.ItemDAO;
 import com.redonz.pms.server.db.DBConnection;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,17 +30,18 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     @Override
-    public ArrayList<BatchItem> goingToExpItems(String date) throws SQLException, ClassNotFoundException {
+    public ArrayList<BatchItem> goingToExpItems(String date) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String lastId() throws SQLException, ClassNotFoundException {
+    public String lastId() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         String lastId = null;
         readWriteLock.readLock().lock();
         try {
             String sql = "select itemCode from BatchItem order by 1 desc limit 1";
             Connection connection = DBConnection.getConnection();
+
             ResultSet rst = connection.createStatement().executeQuery(sql);
 
             if (rst.next()) {
@@ -53,27 +56,27 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public boolean insert(BatchItem t) throws SQLException, ClassNotFoundException {
+    public boolean insert(BatchItem t) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public BatchItem search(String e) throws SQLException, ClassNotFoundException {
+    public BatchItem search(String e) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean update(BatchItem t) throws SQLException, ClassNotFoundException {
+    public boolean update(BatchItem t) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(String e) throws SQLException, ClassNotFoundException {
+    public boolean delete(String e) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Batch Item Deleteing not allowed..."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<BatchItem> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<BatchItem> getAll() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ArrayList<BatchItem> batchItems = new ArrayList<>();
         readWriteLock.readLock().lock();
         try {
@@ -92,7 +95,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public boolean addList(ArrayList<BatchItem> tList) throws SQLException, ClassNotFoundException {
+    public boolean addList(ArrayList<BatchItem> tList) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         String sql = "insert into batchItem values(?,?,?,?,?,?)";
         readWriteLock.writeLock().lock();
         Connection connection = DBConnection.getConnection();
@@ -133,7 +136,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public ArrayList<BatchItem> batchesForBarcode(String barcode) throws SQLException, ClassNotFoundException {
+    public ArrayList<BatchItem> batchesForBarcode(String barcode) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ArrayList<BatchItem> batchItems = new ArrayList<>();
         readWriteLock.readLock().lock();
         try {
@@ -156,7 +159,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public String barcodeForItemCode(String itemCode) throws SQLException, ClassNotFoundException {
+    public String barcodeForItemCode(String itemCode) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         String barcode = null;
         readWriteLock.readLock().lock();
         try {
@@ -177,7 +180,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public ArrayList<BatchItem> availableBatchesForBarcode(String barcode) throws SQLException, ClassNotFoundException {
+    public ArrayList<BatchItem> availableBatchesForBarcode(String barcode) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ArrayList<BatchItem> batchItems = new ArrayList<>();
         readWriteLock.readLock().lock();
         try {
@@ -203,7 +206,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public ItemDetail batchesForBatchNo(String batchNo) throws SQLException, ClassNotFoundException {
+    public ItemDetail batchesForBatchNo(String batchNo) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ItemDetail detail = null;
         readWriteLock.readLock().lock();
         try {
@@ -230,7 +233,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public ArrayList<ItemDetail> batchesByExpDate(String from, String to) throws SQLException, ClassNotFoundException {
+    public ArrayList<ItemDetail> batchesByExpDate(String from, String to) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ArrayList<ItemDetail> itemDetalList = new ArrayList<>();
         readWriteLock.readLock().lock();
         try {
@@ -274,7 +277,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public ItemDetail availableBatchesForBatchNo(String batchNo) throws SQLException, ClassNotFoundException {
+    public ItemDetail availableBatchesForBatchNo(String batchNo) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ItemDetail detail = null;
         readWriteLock.readLock().lock();
         try {
@@ -301,7 +304,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public ArrayList<ItemDetail> availableBatchesByExpDate(String from, String to) throws SQLException, ClassNotFoundException {
+    public ArrayList<ItemDetail> availableBatchesByExpDate(String from, String to) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         ArrayList<ItemDetail> itemDetalList = new ArrayList<>();
         readWriteLock.readLock().lock();
         try {
@@ -346,7 +349,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public Item itemForItemCode(String itemCode) throws SQLException, ClassNotFoundException {
+    public Item itemForItemCode(String itemCode) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         Item item = null;
         readWriteLock.readLock().lock();
         try {
@@ -373,7 +376,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
     }
 
     @Override
-    public boolean updateItemQty(ArrayList<CustomerOrderDetail> customerOrderDetails, Connection connection) throws ClassNotFoundException, SQLException {
+    public boolean updateItemQty(ArrayList<CustomerOrderDetail> customerOrderDetails, Connection connection) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         readWriteLock.writeLock().lock();
 
         try {

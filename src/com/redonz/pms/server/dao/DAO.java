@@ -4,6 +4,8 @@
  */
 package com.redonz.pms.server.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,17 +15,17 @@ import java.util.ArrayList;
  */
 public interface DAO<T, E> {
 
-    public boolean insert(T t) throws SQLException, ClassNotFoundException;
+    public boolean insert(T t) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public T search(E e) throws SQLException, ClassNotFoundException;
+    public T search(E e) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public boolean update(T t) throws SQLException, ClassNotFoundException;
+    public boolean update(T t) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public boolean delete(E e) throws SQLException, ClassNotFoundException;
+    public boolean delete(E e) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public ArrayList<T> getAll() throws SQLException, ClassNotFoundException;
+    public ArrayList<T> getAll() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public String lastId() throws SQLException, ClassNotFoundException;
+    public String lastId() throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public boolean addList(ArrayList<T> tList) throws SQLException, ClassNotFoundException;
+    public boolean addList(ArrayList<T> tList) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 }

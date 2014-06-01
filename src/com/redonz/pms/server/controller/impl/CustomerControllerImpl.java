@@ -8,6 +8,8 @@ import com.redonz.pms.common.controller.CustomerController;
 import com.redonz.pms.common.model.Customer;
 import com.redonz.pms.server.dao.CustomerDAO;
 import com.redonz.pms.server.dao.impl.CustomerDAOImpl;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -25,32 +27,32 @@ public class CustomerControllerImpl extends UnicastRemoteObject implements  Cust
     }
     
     @Override
-    public boolean saveCustomer(Customer customer) throws RemoteException,SQLException,ClassNotFoundException {
+    public boolean saveCustomer(Customer customer) throws RemoteException,SQLException,ClassNotFoundException , FileNotFoundException, IOException{
         return customerDAO.insert(customer);
     }
 
     @Override
-    public Customer searchCustomer(String custId) throws RemoteException ,SQLException,ClassNotFoundException{
+    public Customer searchCustomer(String custId) throws RemoteException ,SQLException,ClassNotFoundException, FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateCustomer(Customer customer) throws RemoteException ,SQLException,ClassNotFoundException{
+    public boolean updateCustomer(Customer customer) throws RemoteException ,SQLException,ClassNotFoundException, FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteCustomer(String custId) throws RemoteException ,SQLException,ClassNotFoundException{
+    public boolean deleteCustomer(String custId) throws RemoteException ,SQLException,ClassNotFoundException, FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Customer> getAllCustomers() throws RemoteException ,SQLException,ClassNotFoundException{
+    public ArrayList<Customer> getAllCustomers() throws RemoteException ,SQLException,ClassNotFoundException, FileNotFoundException, IOException{
         return customerDAO.getAll();
     }
 
     @Override
-    public String getLastCustomerID() throws RemoteException, SQLException, ClassNotFoundException {
+    public String getLastCustomerID() throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerDAO.lastId();
     }
     

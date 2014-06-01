@@ -6,6 +6,8 @@ package com.redonz.pms.server.dao;
 
 import com.redonz.pms.common.model.CustomerOrder;
 import com.redonz.pms.common.model.Payment;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,13 +18,13 @@ import java.util.ArrayList;
  */
 public interface CustomerOrderDAO extends DAO<CustomerOrder, String> {
 
-    boolean updateOrderBalance(String orderId, double amount, Connection connection) throws SQLException, ClassNotFoundException;
+    boolean updateOrderBalance(String orderId, double amount, Connection connection) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    ArrayList<CustomerOrder> ordersForDateRange(String bDate, String eDate) throws SQLException, ClassNotFoundException;
+    ArrayList<CustomerOrder> ordersForDateRange(String bDate, String eDate) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    ArrayList<CustomerOrder> ordersByOrderDate(String orderDate) throws SQLException, ClassNotFoundException;
+    ArrayList<CustomerOrder> ordersByOrderDate(String orderDate) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    ArrayList<CustomerOrder> ordersByCustId(String custId) throws SQLException, ClassNotFoundException;
+    ArrayList<CustomerOrder> ordersByCustId(String custId) throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 
-    public boolean saveWithPayment(CustomerOrder customerOrder, Payment payment)throws SQLException, ClassNotFoundException;
+    public boolean saveWithPayment(CustomerOrder customerOrder, Payment payment)throws SQLException, ClassNotFoundException, FileNotFoundException, IOException;
 }

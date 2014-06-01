@@ -11,6 +11,8 @@ import com.redonz.pms.server.reservation.Reservation;
 import com.redonz.pms.server.dao.PaymentDAO;
 import com.redonz.pms.server.dao.impl.PaymentDAOImpl;
 import com.redonz.pms.server.observable.PaymentObservable;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -31,7 +33,7 @@ public class PaymentControllerImpl extends UnicastRemoteObject implements Paymen
     }
 
     @Override
-    public boolean savePayment(final Payment payment) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean savePayment(final Payment payment) throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         boolean res = paymentDAO.insert(payment);
         if (res) {
             new Thread() {
@@ -49,22 +51,22 @@ public class PaymentControllerImpl extends UnicastRemoteObject implements Paymen
     }
 
     @Override
-    public Payment searchPayment(String paymentId) throws RemoteException, SQLException, ClassNotFoundException {
+    public Payment searchPayment(String paymentId) throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updatePayment(Payment payment) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean updatePayment(Payment payment) throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deletePayment(String paymentId) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean deletePayment(String paymentId) throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getLastPaymentId() throws RemoteException, SQLException, ClassNotFoundException {
+    public String getLastPaymentId() throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         return paymentDAO.lastId();
     }
 

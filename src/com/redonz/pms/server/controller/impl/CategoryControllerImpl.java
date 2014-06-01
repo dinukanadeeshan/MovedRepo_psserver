@@ -8,6 +8,8 @@ import com.redonz.pms.common.controller.CategoryController;
 import com.redonz.pms.common.model.Category;
 import com.redonz.pms.server.dao.CategoryDAO;
 import com.redonz.pms.server.dao.impl.CategoryDAOImpl;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -23,22 +25,22 @@ public class CategoryControllerImpl extends UnicastRemoteObject implements  Cate
     }
     
     @Override
-    public boolean addCategory(Category category) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean addCategory(Category category) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return categoryDAO.insert(category);
     }
 
     @Override
-    public ArrayList<Category> getAllCategories() throws RemoteException, SQLException, ClassNotFoundException {
+    public ArrayList<Category> getAllCategories() throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         return categoryDAO.getAll();
     }
 
     @Override
-    public String getLastCategoryId() throws RemoteException, SQLException, ClassNotFoundException {
+    public String getLastCategoryId() throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         return categoryDAO.lastId();
     }
 
     @Override
-    public Category searchCategory(String categoryId) throws RemoteException, SQLException, ClassNotFoundException {
+    public Category searchCategory(String categoryId) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return categoryDAO.search(categoryId);
     }
     

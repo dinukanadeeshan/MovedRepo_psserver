@@ -10,6 +10,8 @@ import com.redonz.pms.common.model.Payment;
 import com.redonz.pms.server.dao.CustomerOrderDAO;
 import com.redonz.pms.server.dao.impl.CustomerOrderDAOImpl;
 import com.redonz.pms.server.reservation.Reservation;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -28,53 +30,53 @@ public class CustomerOrderControllerImpl extends UnicastRemoteObject implements 
     }
 
     @Override
-    public boolean saveCustomerOrder(CustomerOrder customerOrder) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean saveCustomerOrder(CustomerOrder customerOrder) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         System.out.println("orderController");
         return customerOrderDAO.insert(customerOrder);
     }
 
     @Override
-    public CustomerOrder searchCustomerOrder(String orderId) throws RemoteException, SQLException, ClassNotFoundException {
+    public CustomerOrder searchCustomerOrder(String orderId) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean updateCustomerOrder(CustomerOrder customerOrder) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean updateCustomerOrder(CustomerOrder customerOrder) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean deleteCustomerOrder(String orderId) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean deleteCustomerOrder(String orderId) throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getLastOrderId() throws RemoteException, SQLException, ClassNotFoundException {
+    public String getLastOrderId() throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerOrderDAO.lastId();
     }
 
     @Override
-    public boolean updateOrderDiscount(String orderId, double discount, double netAmount) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean updateOrderDiscount(String orderId, double discount, double netAmount) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerOrderDAO.update(new CustomerOrder(null, orderId, null, 0, netAmount, discount));
     }
 
     @Override
-    public ArrayList<CustomerOrder> getOrdersByDateRange(String bDate, String eDate) throws RemoteException, SQLException, ClassNotFoundException {
+    public ArrayList<CustomerOrder> getOrdersByDateRange(String bDate, String eDate) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerOrderDAO.ordersForDateRange(bDate, eDate);
     }
 
     @Override
-    public ArrayList<CustomerOrder> getOrdersByOrderDate(String orderDate) throws RemoteException, SQLException, ClassNotFoundException {
+    public ArrayList<CustomerOrder> getOrdersByOrderDate(String orderDate) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerOrderDAO.ordersByOrderDate(orderDate);
     }
 
     @Override
-    public ArrayList<CustomerOrder> getOrdersByCustId(String custId) throws RemoteException, SQLException, ClassNotFoundException {
+    public ArrayList<CustomerOrder> getOrdersByCustId(String custId) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerOrderDAO.ordersByCustId(custId);
     }
 
     @Override
-    public boolean saveCustomerOrder(CustomerOrder customerOrder, Payment payment) throws RemoteException, SQLException, ClassNotFoundException {
+    public boolean saveCustomerOrder(CustomerOrder customerOrder, Payment payment) throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerOrderDAO.saveWithPayment(customerOrder, payment);
     }
 
