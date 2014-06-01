@@ -8,6 +8,9 @@ import com.redonz.pms.common.controller.CustomerController;
 import com.redonz.pms.common.model.Customer;
 import com.redonz.pms.server.dao.CustomerDAO;
 import com.redonz.pms.server.dao.impl.CustomerDAOImpl;
+import com.redonz.pms.server.model.ID;
+import com.redonz.pms.server.others.IDGen;
+import com.redonz.pms.server.pool.id.CustomerIdPool;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
  */
 public class CustomerControllerImpl extends UnicastRemoteObject implements  CustomerController{
     private CustomerDAO customerDAO = new CustomerDAOImpl();
+    private static CustomerIdPool customerIdPool = new CustomerIdPool();
     
     public CustomerControllerImpl() throws RemoteException{
         
@@ -54,6 +58,22 @@ public class CustomerControllerImpl extends UnicastRemoteObject implements  Cust
     @Override
     public String getLastCustomerID() throws RemoteException, SQLException, ClassNotFoundException , FileNotFoundException, IOException{
         return customerDAO.lastId();
+    }
+
+    @Override
+    public String getNextCustomerId() throws RemoteException, SQLException, ClassNotFoundException, FileNotFoundException, IOException {
+        ID id = customerIdPool.getId();
+        if (id == null) {
+            String nextID = IDGen.getNextId(customerDAO.lastId());
+            customerIdPool.addId(nextID);
+            return nextID;
+        }
+        return id.getId();
+    }
+
+    @Override
+    public boolean getReleaseCustomerId(String id) throws RemoteException {
+        return customerIdPool.releaseID(id);
     }
     
 }
