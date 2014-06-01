@@ -72,7 +72,7 @@ public class CustomerControllerImpl extends UnicastRemoteObject implements  Cust
     }
 
     @Override
-    public boolean getReleaseCustomerId(String id) throws RemoteException {
+    public boolean releaseCustomerId(String id) throws RemoteException {
         return customerIdPool.releaseID(id);
     }
     
