@@ -111,7 +111,7 @@ public class CustomerOrderDetailDAOImpl implements CustomerOrderDetailDAO {
                 customerOrderDetails.add(new CustomerOrderDetail(itemCode, e, batchNo, qty, unitPrice, ""));
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }

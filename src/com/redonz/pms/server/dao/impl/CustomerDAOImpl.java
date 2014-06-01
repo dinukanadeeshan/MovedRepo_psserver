@@ -37,7 +37,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 prepareStatement.setString(4, t.getContact());
                 res = prepareStatement.executeUpdate();
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.writeLock().unlock();
         }
@@ -71,7 +71,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             while (rst.next()) {
                 customers.add(new Customer(rst.getString("custId"), rst.getString("name"), rst.getString("address"), rst.getString("contact")));
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -90,7 +90,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             if (rst.next()) {
                 lastId = rst.getString(1);
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }

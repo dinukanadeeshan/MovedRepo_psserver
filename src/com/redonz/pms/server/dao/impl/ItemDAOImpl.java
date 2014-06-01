@@ -41,7 +41,7 @@ public class ItemDAOImpl implements ItemDAO {
             res = prepareStatement.executeUpdate() > 0;
 
         } finally {
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.writeLock().unlock();
         }
 
@@ -67,7 +67,7 @@ public class ItemDAOImpl implements ItemDAO {
 
 
         } finally {
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.readLock().unlock();
         }
 
@@ -107,7 +107,7 @@ public class ItemDAOImpl implements ItemDAO {
             }
 
         } finally {
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.readLock().unlock();
         }
         return itemDetail;
@@ -141,7 +141,7 @@ public class ItemDAOImpl implements ItemDAO {
 
         } finally {
             readWriteLock.readLock().unlock();
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         }
 
         return items;
@@ -163,7 +163,7 @@ public class ItemDAOImpl implements ItemDAO {
             }
 
         } finally {
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.readLock().unlock();
         }
         return items;
@@ -187,7 +187,7 @@ public class ItemDAOImpl implements ItemDAO {
 
         } finally {
             readWriteLock.readLock().unlock();
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         }
         return items;
     }

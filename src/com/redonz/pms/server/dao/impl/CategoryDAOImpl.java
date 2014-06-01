@@ -32,7 +32,7 @@ public class CategoryDAOImpl implements CategoryDAO{
             prepareStatement.setString(1, t.getCategoryId());
             prepareStatement.setString(2, t.getDescription());
             res = prepareStatement.executeUpdate();
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.writeLock().unlock();
         }
@@ -82,7 +82,7 @@ public class CategoryDAOImpl implements CategoryDAO{
             while (rst.next()) {
                 categorys.add(new Category(rst.getString(1), rst.getString(2)));
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }

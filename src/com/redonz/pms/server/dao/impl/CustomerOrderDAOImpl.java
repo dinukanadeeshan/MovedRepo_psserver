@@ -63,7 +63,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
             throw e;
         } finally {
             connection.setAutoCommit(true);
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.writeLock().unlock();
         }
     }
@@ -98,7 +98,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
             sql = sql.substring(0, sql.length() - 2) + "where orderId = '" + t.getOrderId() + "'";
             Connection connection = DBConnection.getConnection();
             res = connection.createStatement().executeUpdate(sql);
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.writeLock()
                     .unlock();
@@ -138,7 +138,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -157,7 +157,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
             if (rst.next()) {
                 lastId = rst.getString(1);
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -212,7 +212,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -243,7 +243,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -275,7 +275,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -329,7 +329,7 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAO {
             throw e;
         } finally {
             connection.setAutoCommit(true);
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.writeLock().unlock();
         }
     }

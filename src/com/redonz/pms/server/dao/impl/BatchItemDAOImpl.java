@@ -45,7 +45,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
                 lastId = rst.getString(1);
 
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -84,7 +84,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
             while (rst.next()) {
                 batchItems.add(new BatchItem(rst.getString("itemCode"), rst.getString("barcode"), rst.getString("batchNo"), rst.getString("expDate"), rst.getDouble("unitPrice"), rst.getInt("qtyOnHand")));
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -127,7 +127,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
             throw ex;
         } finally {
             connection.setAutoCommit(true);
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.writeLock().unlock();
         }
     }
@@ -148,7 +148,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
             while (rst.next()) {
                 batchItems.add(new BatchItem(rst.getString("itemCode"), barcode, rst.getString("batchNo"), rst.getString("expDate"), rst.getDouble("unitPrice"), rst.getInt("qtyOnHand")));
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -169,7 +169,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
             if (rst.next()) {
                 barcode = rst.getString(1);
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -195,7 +195,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
 
 //                }
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -222,7 +222,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
                 detail = new ItemDetail(item, batchItems);
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -266,7 +266,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -293,7 +293,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
                 detail = new ItemDetail(item, batchItems);
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -338,7 +338,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -365,7 +365,7 @@ public class BatchItemDAOImpl implements BatchItemDAO {
 
             }
 
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }

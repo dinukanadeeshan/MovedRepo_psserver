@@ -36,7 +36,7 @@ private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock
                 u.setPrivilage(rst.getInt(3));
                 user = u;
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }

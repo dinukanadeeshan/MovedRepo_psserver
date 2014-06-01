@@ -28,7 +28,7 @@ public class DateControllerImpl extends UnicastRemoteObject implements DateContr
         Connection connection = DBConnection.getConnection();
         ResultSet rst = connection.createStatement().executeQuery("select curdate()");
         rst.next();
-        DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection)connection);
+        DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection)connection);
         return rst.getString(1);
     }
 
@@ -37,7 +37,7 @@ public class DateControllerImpl extends UnicastRemoteObject implements DateContr
         Connection connection = DBConnection.getConnection();
         ResultSet rst = connection.createStatement().executeQuery("select curtime()");
         rst.next();
-        DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection)connection);
+        DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection)connection);
         return rst.getString(1);
     }
 

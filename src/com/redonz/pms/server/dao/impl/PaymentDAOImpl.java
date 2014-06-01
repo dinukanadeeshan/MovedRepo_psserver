@@ -42,7 +42,7 @@ public class PaymentDAOImpl implements PaymentDAO {
             if (rst.next()) {
                 lastId = rst.getString(1);
             }
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
         } finally {
             readWriteLock.readLock().unlock();
         }
@@ -103,7 +103,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 //            throw ex;
         } finally {
             connection.setAutoCommit(true);
-            DBConnection.getPool().returnConnection((com.redonz.pms.server.connectionpool.DBConnection) connection);
+            DBConnection.getPool().returnConnection((com.redonz.pms.server.pool.connection.DBConnection) connection);
             readWriteLock.writeLock().unlock();
         }
     }
